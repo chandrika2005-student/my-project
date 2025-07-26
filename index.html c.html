@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Calculator</title>
+  <style>
+    body {
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .calculator {
+      background-color: grey;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      height: 250hv;
+    }
+    .display {
+      background-color: #333;
+      color: white;
+      text-align: right;
+      font-size: 2.5em;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 60px);
+      grid-gap: 10px;
+      justify-content: center;
+    }
+    button {
+      font-size: 0.9em;
+      padding: 15px;
+      border: none;
+      border-radius: 200px;
+      background-color: pink;
+      background-size: 0 auto;
+      color: white;
+      cursor: pointer;
+    }
+    .orange {
+      background-color: orange;
+      background-size: 0 auto;
+    }
+    .gray {
+      background-color: blue;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div class="display" id="display">0</div>
+    <div class="buttons">
+      <button class="gray" onclick="clearDisplay()">AC</button>
+      <button class="gray" onclick="appendSymbol('/')">%</button>
+      <button class="gray" onclick="percentage()">%</button>
+      <button class="orange" onclick="appendSymbol('/')">/</button>
+
+      <button onclick="appendSymbol('7')">7</button>
+      <button onclick="appendSymbol('8')">8</button>
+      <button onclick="appendSymbol('9')">9</button>
+      <button class="orange" onclick="appendSymbol('*')">*</button>
+
+      <button onclick="appendSymbol('4')">4</button>
+      <button onclick="appendSymbol('5')">5</button>
+      <button onclick="appendSymbol('6')">6</button>
+      <button class="orange" onclick="appendSymbol('-')">-</button>
+
+      <button onclick="appendSymbol('1')">1</button>
+      <button onclick="appendSymbol('2')">2</button>
+      <button onclick="appendSymbol('3')">3</button>
+      <button class="orange" onclick="appendSymbol('+')">+</button>
+
+      <button onclick="appendSymbol('0')">0</button>
+      <div></div>
+      <div></div>
+      <button class="orange" onclick="calculate()">=</button>
+
+
+      <button onclick="appendSymbol('name')">name</button>
+      <button onclick="appendSymbol('ps')">ps</button>
+      <div></div>
+      <button class="orange" onclick="calculate()">Login</button>
+      <div></div>
+      <div></div>
+      <div></div>
+      <button class="orange" onclick="calculate()">Logout</button>
+      
+      
+
+    </div>
+  </div>
+
+  <script>
+    let display = document.getElementById("display");
+    let currentInput = "0";
+
+    function appendSymbol(symbol) {
+      if (currentInput === "0") {
+        currentInput = symbol;
+      } else {
+        currentInput += symbol;
+      }
+      display.innerText = currentInput;
+    }
+
+    
+
+    function clearDisplay() {
+      currentInput = "0";
+      display.innerText = currentInput;
+    }
+
+    function calculate() {
+      try {
+        currentInput = eval(currentInput).toString();
+        display.innerText = currentInput;
+      } catch {
+        display.innerText = "Error";
+        currentInput = "0";
+      }
+    }
+
+    function percentage() {
+      try {
+        currentInput = (parseFloat(currentInput) / 100).toString();
+        display.innerText = currentInput;
+      } catch {
+        display.innerText = "Error";
+        currentInput = "0";
+      }
+    }
+  </script>
+</body>
+</html>
+
